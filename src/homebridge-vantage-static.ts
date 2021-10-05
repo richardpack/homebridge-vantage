@@ -9,7 +9,7 @@ import { VantageThermostat } from "./vantage-thermostat-accessory";
 import { VantageInfusionController, EndDownloadConfigurationEvent, LoadStatusChangeEvent, ThermostatIndoorTemperatureChangeEvent, ThermostatOutdoorTemperatureChangeEvent } from "./vantage-infusion-controller";
 import * as xml2json from 'xml2json'
 
-const PLUGIN_NAME = "homebridge-vantage-static";
+const PLUGIN_NAME = "homebridge-vantage-static-2";
 const PLATFORM_NAME = "VantageControls";
 
 const BRIDGE_ACCESSORY_LIMIT = 149;

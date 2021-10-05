@@ -1,6 +1,6 @@
 {
-    "name": "homebridge-vantage-static",
-    "version": "1.0.1",
+    "name": "homebridge-vantage-static-2",
+    "version": "1.0.2",
     "description": "VantageControls InFusion plugin for homebridge rewritten in typescript. Forked from original repo: https://github.com/thebeastxdxd/homebridge-vantage",
     "main": "dist/homebridge-vantage-static.js",
     "scripts": {
