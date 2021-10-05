@@ -1,7 +1,7 @@
 {
     "name": "homebridge-vantage-static",
     "version": "1.0.1",
-    "description": "VantageControls InFusion plugin for homebridge rewritten in typescript. original repo: https://github.com/thebeastxdxd/homebridge-vantage.git",
+    "description": "VantageControls InFusion plugin for homebridge rewritten in typescript. Forked from original repo: https://github.com/thebeastxdxd/homebridge-vantage",
     "main": "dist/homebridge-vantage-static.js",
     "scripts": {
         "clean": "rimraf ./dist",
@@ -10,7 +10,7 @@
         "postpublish": "npm run clean",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "ido benamram",
+    "author": "richard pack",
     "engines": {
         "homebridge": ">=1.0.0"
     },

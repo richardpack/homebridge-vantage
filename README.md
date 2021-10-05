@@ -1,4 +1,4 @@
-# This is a fork
+# This is a fork of https://github.com/thebeastxdxd/homebridge-vantage
 
 # This plugin is a typescript rewrite of angeloxx's old plugin 
 I didn't really add or remove (atleast I think I didn't) any features.
