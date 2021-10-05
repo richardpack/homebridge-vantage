@@ -222,7 +222,7 @@ class VantageStaticPlatform implements StaticPlatformPlugin {
 
         this.log.info(`New load added (VID=${response.item.VID}, Name=${response.item.Name}, ${loadType})`);
 
-        if (name.includes("fan") || name.includes("Fan") ||loadType == "fan") {
+        if (this.isFan(loadType, name)) {
           this.accessoriesDict[response.item.VID] = new VantageFan(hap, this.log, name, response.item.VID, this.vantageController);
         } else if (loadType == "switch") {
           this.accessoriesDict[response.item.VID] = new VantageSwitch(hap, this.log, name, response.item.VID, this.vantageController);
@@ -271,5 +271,9 @@ class VantageStaticPlatform implements StaticPlatformPlugin {
   // can call callback at a later time, but it will stop the bridge from loading
   accessories(callback: (foundAccessories: AccessoryPlugin[]) => void): void {
     this.accessoriesCallback = callback;
+  }
+
+  private isFan(loadType: string | undefined, name: string) {
+    return !name.includes("light") && (name.includes("fan") || name.includes("Fan")) || loadType == "fan";
   }
 }
