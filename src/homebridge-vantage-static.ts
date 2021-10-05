@@ -222,14 +222,14 @@ class VantageStaticPlatform implements StaticPlatformPlugin {
 
         this.log.info(`New load added (VID=${response.item.VID}, Name=${response.item.Name}, ${loadType})`);
 
-        if (loadType == "fan") {
+        if (name.includes("fan") || name.includes("Fan") ||loadType == "fan") {
           this.accessoriesDict[response.item.VID] = new VantageFan(hap, this.log, name, response.item.VID, this.vantageController);
         } else if (loadType == "switch") {
           this.accessoriesDict[response.item.VID] = new VantageSwitch(hap, this.log, name, response.item.VID, this.vantageController);
         } else if (loadType == "outlet") {
           this.accessoriesDict[response.item.VID] = new VantageOutlet(hap, this.log, name, response.item.VID, this.vantageController);
-        } else if (loadType == "dimmer") {
-          this.accessoriesDict[response.item.VID] = new VantageDimmer(hap, this.log, name, response.item.VID, this.vantageController, loadType);
+        // } else if (loadType == "dimmer") {
+        //   this.accessoriesDict[response.item.VID] = new VantageDimmer(hap, this.log, name, response.item.VID, this.vantageController, loadType);
         } else {
           // normal light 
           this.accessoriesDict[response.item.VID] = new VantageLight(hap, this.log, name, response.item.VID, this.vantageController);

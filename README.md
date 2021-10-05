@@ -1,3 +1,5 @@
+# This is a fork
+
 # This plugin is a typescript rewrite of angeloxx's old plugin 
 I didn't really add or remove (atleast I think I didn't) any features.
 ### Why am I doing this?

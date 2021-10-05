@@ -144,6 +144,7 @@ export class VantageInfusionController extends EventEmitter {
 
   sendControllerMessage(msg: string) {
     sleep.usleep(this.controllerSendInterval);
+    this.log.info("writing message to controller: " + msg);
     this.serverController.write(msg, "ascii");
   }
 

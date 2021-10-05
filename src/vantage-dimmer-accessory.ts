@@ -80,10 +80,10 @@ export class VantageDimmer implements AccessoryPlugin, VantageLoadObjectInterfac
   }
 
   dispatchDimmerRequest() {
-    this.dimmerRequestTimer = setTimeout(() => {
+    // this.dimmerRequestTimer = setTimeout(() => {
       this.controller.sendLoadDim(this.vid, this.lightOn ? this.brightness : 0);
       this.dimmerRequestTimer = undefined;
-    }, 50);
+    // }, 50);
   }
 
   /*
