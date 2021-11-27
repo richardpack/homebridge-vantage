@@ -67,6 +67,7 @@ export class VantageDimmer implements AccessoryPlugin, VantageLoadObjectInterfac
       .on(CharacteristicEventTypes.SET, (value: CharacteristicValue, callback: CharacteristicSetCallback) => {
         this.log.debug(`Dimmer ${this.name} set state: ${value ? "ON" : "OFF"}`);
         this.lightOn = value as boolean;
+        this.dispatchOnOffRequest();
         callback();
       });
 
@@ -77,6 +78,10 @@ export class VantageDimmer implements AccessoryPlugin, VantageLoadObjectInterfac
     if (this.loadType == "rgb") {
       this.addRGBLightService();
     }
+  }
+
+  dispatchOnOffRequest() {
+    this.controller.sendLoadDim(this.vid, this.lightOn ? this.brightness : 0, 2.5);
   }
 
   dispatchDimmerRequest() {
@@ -98,16 +103,16 @@ export class VantageDimmer implements AccessoryPlugin, VantageLoadObjectInterfac
       .on(CharacteristicEventTypes.SET, (value: CharacteristicValue, callback: CharacteristicSetCallback) => {
         this.log.debug(`Dimmer ${this.name} set brightness state: ${value}`);
         this.brightness = value as number;
-        this.lightOn = this.brightness > 0 ? true : false;
+        this.lightOn = this.brightness > 0;
 
         // a simple debouncing mechanism
-        if (this.dimmerRequestTimer == undefined) {
+        // if (this.dimmerRequestTimer == undefined) {
           this.dispatchDimmerRequest();
 
-        } else {
-          clearTimeout(this.dimmerRequestTimer);
-          this.dispatchDimmerRequest();
-        }
+        // } else {
+        //   clearTimeout(this.dimmerRequestTimer);
+        //   this.dispatchDimmerRequest();
+        // }
 
         callback();
       });

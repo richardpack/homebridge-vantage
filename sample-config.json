@@ -1,6 +1,6 @@
 {
     "platforms": [{
-        "platform": "VantageControls",
+        "platform": "VantageInfusion",
         "ipaddress": "192.168.1,1"
         }], 
     "bridge": {

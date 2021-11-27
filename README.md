@@ -50,8 +50,8 @@ it will look something like this:
 
 ```
     {
-        "platform": "VantageControls",
-        "name": "VantageControls",
+        "platform": "VantageInfusion",
+        "name": "VantageInfusion",
         "ipaddress": "1.1.1.1",
         "_bridge": {
             "username": "00:00:00:00:00:00,
@@ -62,8 +62,8 @@ it will look something like this:
         ]
     },
     {
-        "platform": "VantageControls",
-        "name": "VantageControls",
+        "platform": "VantageInfusion",
+        "name": "VantageInfusion",
         "ipaddress": "1.1.1.1",
         "whitelist": [
             "804"
@@ -115,7 +115,7 @@ Add platform within config.json of you homebridge instance:
 
     {
         "platforms": [{
-            "platform": "VantageControls",
+            "platform": "VantageInfusion",
             "ipaddress": "192.168.1.1",
             "nameMapping": {
                 "vid": "name"

@@ -9,8 +9,8 @@ import { VantageThermostat } from "./vantage-thermostat-accessory";
 import { VantageInfusionController, EndDownloadConfigurationEvent, LoadStatusChangeEvent, ThermostatIndoorTemperatureChangeEvent, ThermostatOutdoorTemperatureChangeEvent } from "./vantage-infusion-controller";
 import * as xml2json from 'xml2json'
 
-const PLUGIN_NAME = "homebridge-vantage-static-2";
-const PLATFORM_NAME = "VantageControls";
+const PLUGIN_NAME = "homebridge-vantage-infusion-controller";
+const PLATFORM_NAME = "VantageInfusion";
 
 const BRIDGE_ACCESSORY_LIMIT = 149;
 
@@ -32,6 +32,7 @@ class VantageStaticPlatform implements StaticPlatformPlugin {
   private whitelist: Array<string>;
   private accessoriesCallback: (foundAccessories: AccessoryPlugin[]) => void;
   private api: API;
+  private config: PlatformConfig;
 
   constructor(log: Logging, config: PlatformConfig, api: API) {
     this.log = log;
@@ -41,6 +42,7 @@ class VantageStaticPlatform implements StaticPlatformPlugin {
     this.whitelist = [];
     this.accessoriesCallback = () => { };
     this.api = api;
+    this.config = config;
 
     if (config.controllerSendInterval) {
       this.vantageController = new VantageInfusionController(this.log, config.ipaddress, config.controllerSendInterval);
@@ -228,8 +230,8 @@ class VantageStaticPlatform implements StaticPlatformPlugin {
           this.accessoriesDict[response.item.VID] = new VantageSwitch(hap, this.log, name, response.item.VID, this.vantageController);
         } else if (loadType == "outlet") {
           this.accessoriesDict[response.item.VID] = new VantageOutlet(hap, this.log, name, response.item.VID, this.vantageController);
-        // } else if (loadType == "dimmer") {
-        //   this.accessoriesDict[response.item.VID] = new VantageDimmer(hap, this.log, name, response.item.VID, this.vantageController, loadType);
+        } else if (loadType == "dimmer") {
+          this.accessoriesDict[response.item.VID] = new VantageDimmer(hap, this.log, name, response.item.VID, this.vantageController, loadType);
         } else {
           // normal light 
           this.accessoriesDict[response.item.VID] = new VantageLight(hap, this.log, name, response.item.VID, this.vantageController);
@@ -274,6 +276,6 @@ class VantageStaticPlatform implements StaticPlatformPlugin {
   }
 
   private isFan(loadType: string | undefined, name: string) {
-    return !name.includes("light") && (name.includes("fan") || name.includes("Fan")) || loadType == "fan";
+    return (name.includes("fan") || name.includes("Fan") || loadType == "fan") && !name.includes("light") && !name.includes("Light");
   }
 }
